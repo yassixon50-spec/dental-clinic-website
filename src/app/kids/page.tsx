@@ -222,7 +222,7 @@ export default function KidsPage() {
               <Button 
                 size="lg" 
                 onClick={startGame}
-                className="bg-white text-purple-600 hover:bg-yellow-100 text-lg px-8 py-4 rounded-full shadow-lg"
+                className="bg-yellow-100 text-purple-600 text-lg px-8 py-4 rounded-full shadow-lg hover:bg-yellow-100 hover:text-purple-600"
               >
                 🎮 O'yin boshlash
               </Button>
