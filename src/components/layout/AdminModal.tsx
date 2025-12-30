@@ -60,7 +60,7 @@ export default function AdminModal({ open, onClose }: Props) {
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: "spring", duration: 0.5 }}
+            transition={{ type: "spring" as const, duration: 0.5 }}
             onClick={(e) => e.stopPropagation()}
             className="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl"
           >

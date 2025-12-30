@@ -25,7 +25,7 @@ export default function Card({ children, className = "", hoverable = true, onCli
       whileHover={hoverable ? { 
         y: -8, 
         scale: 1.02,
-        transition: { type: "spring", stiffness: 400, damping: 17 }
+        transition: { type: "spring" as const, stiffness: 400, damping: 17 }
       } : {}}
       whileTap={hoverable ? { scale: 0.98 } : {}}
       onClick={onClick}

@@ -62,7 +62,7 @@ export default function Doctors() {
           <motion.span 
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 200 }}
+            transition={{ type: "spring" as const, stiffness: 200 }}
             className="text-primary font-semibold mb-4 block"
           >
             Jamoa
@@ -130,7 +130,7 @@ export default function Doctors() {
                   <motion.div
                     initial={{ scale: 0, rotate: -180 }}
                     whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
+                    transition={{ delay: 0.3 + index * 0.1, type: "spring" as const }}
                     className="absolute top-3 right-3 w-12 h-12 bg-secondary rounded-full flex items-center justify-center shadow-lg"
                   >
                     <span className="text-white text-xs font-bold">{doctor.experience}+</span>

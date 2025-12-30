@@ -54,7 +54,7 @@ const cardVariants = {
     y: 0,
     rotateX: 0,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 80,
       damping: 15,
     },
@@ -87,7 +87,7 @@ export default function Pricing() {
           <motion.span 
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring" }}
+            transition={{ type: "spring" as const }}
             className="text-primary font-semibold mb-4 block"
           >
             Narxlar
@@ -114,7 +114,7 @@ export default function Pricing() {
               whileHover={{ 
                 y: -10, 
                 scale: 1.02,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring" as const, stiffness: 300 }
               }}
               className={`relative bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgb(0_0_0/0.08)] hover:shadow-[0_20px_50px_rgb(0_0_0/0.15)] transition-shadow ${
                 category.popular ? "ring-2 ring-secondary" : ""

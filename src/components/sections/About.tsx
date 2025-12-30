@@ -75,7 +75,7 @@ export default function About() {
             <motion.div 
               className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-sm"
               whileHover={{ scale: 1.02, boxShadow: "0 10px 40px rgb(0 0 0 / 0.1)" }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               <motion.div 
                 className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center"
@@ -96,7 +96,7 @@ export default function About() {
               <motion.div 
                 className="relative rounded-3xl overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 200 }}
+                transition={{ type: "spring" as const, stiffness: 200 }}
               >
                 <div className="relative w-full h-[500px]">
                   <Image src="https://i.pinimg.com/1200x/7a/a0/d3/7aa0d3e9f723f9ca77563492b7cc40aa.jpg" alt="DentCare klinikasi" fill className="object-cover" />

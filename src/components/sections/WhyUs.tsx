@@ -30,7 +30,7 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 12,
     },
@@ -55,7 +55,7 @@ export default function WhyUs() {
           <motion.span 
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring" }}
+            transition={{ type: "spring" as const }}
             className="text-primary font-semibold mb-4 block"
           >
             Afzalliklar
@@ -78,7 +78,7 @@ export default function WhyUs() {
               whileHover={{ 
                 y: -10, 
                 scale: 1.02,
-                transition: { type: "spring", stiffness: 400, damping: 17 }
+                transition: { type: "spring" as const, stiffness: 400, damping: 17 }
               }}
               className="group flex gap-5 p-6 bg-white rounded-2xl shadow-[0_4px_20px_rgb(0_0_0/0.08)] hover:shadow-[0_20px_50px_rgb(0_0_0/0.15)] transition-all cursor-pointer"
             >

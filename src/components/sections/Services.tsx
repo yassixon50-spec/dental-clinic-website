@@ -31,7 +31,7 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
+      type: "spring" as const,
       stiffness: 100,
       damping: 12,
     },
@@ -93,7 +93,7 @@ export default function Services() {
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <div className="flex gap-3 mt-auto">
                     <Button variant="ghost" size="sm" href={`/services/${service.id}`} className="text-primary">Batafsil</Button>
-                    <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400 }}>
+                    <motion.div whileHover={{ x: 5 }} transition={{ type: "spring" as const, stiffness: 400 }}>
                       <Button size="sm" href="#appointment" icon={<ArrowRight size={16} />}>Yozilish</Button>
                     </motion.div>
                   </div>
