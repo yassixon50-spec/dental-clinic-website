@@ -111,6 +111,58 @@ const funFacts = [
 export default function KidsPage() {
   const [selectedTab, setSelectedTab] = useState<'good' | 'bad' | 'tips'>('good');
   const [currentFact, setCurrentFact] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [gameQuestion, setGameQuestion] = useState(0);
+
+  const gameQuestions = [
+    {
+      question: "Kuniga necha marta tish yuvish kerak?",
+      options: ["1 marta", "2 marta", "3 marta", "5 marta"],
+      correct: 1,
+      emoji: "🦷"
+    },
+    {
+      question: "Qaysi ovqat tishlar uchun foydali?",
+      options: ["Shokolad", "Olma", "Shirinlik", "Gazli ichimlik"],
+      correct: 1,
+      emoji: "🍎"
+    },
+    {
+      question: "Tish cho'tkasini qancha vaqtda almashtirish kerak?",
+      options: ["1 oyda", "2 oyda", "3 oyda", "6 oyda"],
+      correct: 2,
+      emoji: "🪥"
+    },
+    {
+      question: "Shifokorga qancha vaqtda bir bor borish kerak?",
+      options: ["3 oyda", "6 oyda", "1 yilda", "2 yilda"],
+      correct: 1,
+      emoji: "👨‍⚕️"
+    }
+  ];
+
+  const startGame = () => {
+    setGameStarted(true);
+    setScore(0);
+    setGameQuestion(0);
+  };
+
+  const answerQuestion = (selectedAnswer: number) => {
+    if (selectedAnswer === gameQuestions[gameQuestion].correct) {
+      setScore(score + 1);
+    }
+    
+    if (gameQuestion < gameQuestions.length - 1) {
+      setGameQuestion(gameQuestion + 1);
+    } else {
+      // O'yin tugadi
+      setTimeout(() => {
+        alert(`🎉 O'yin tugadi! Sizning natijangiz: ${score + (selectedAnswer === gameQuestions[gameQuestion].correct ? 1 : 0)}/${gameQuestions.length}`);
+        setGameStarted(false);
+      }, 1000);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20">
@@ -169,11 +221,12 @@ export default function KidsPage() {
             >
               <Button 
                 size="lg" 
+                onClick={startGame}
                 className="bg-white text-purple-600 hover:bg-yellow-100 text-lg px-8 py-4 rounded-full shadow-lg"
               >
                 🎮 O'yin boshlash
               </Button>
-              <Link href="#appointment">
+              <a href="#appointment">
                 <Button 
                   size="lg" 
                   variant="secondary"
@@ -181,7 +234,7 @@ export default function KidsPage() {
                 >
                   👨‍⚕️ Shifokorga boring
                 </Button>
-              </Link>
+              </a>
             </motion.div>
           </div>
         </div>
@@ -414,24 +467,71 @@ export default function KidsPage() {
               sog'lom saqlash uchun maxsus maslahatlar berishadi!
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="#appointment">
+              <a href="#appointment">
                 <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white text-xl px-8 py-4 rounded-full shadow-lg">
                   <Calendar className="mr-2" />
                   Navbat olish
                 </Button>
-              </Link>
-              <Button 
-                size="lg" 
-                variant="secondary"
-                className="bg-pink-500 hover:bg-pink-600 text-white text-xl px-8 py-4 rounded-full shadow-lg"
-              >
-                <Users className="mr-2" />
-                Ota-onalar uchun
-              </Button>
+              </a>
+              <a href="/">
+                <Button 
+                  size="lg" 
+                  variant="secondary"
+                  className="bg-pink-500 hover:bg-pink-600 text-white text-xl px-8 py-4 rounded-full shadow-lg"
+                >
+                  <Users className="mr-2" />
+                  Ota-onalar uchun
+                </Button>
+              </a>
             </div>
           </Card>
         </AnimatedSection>
       </div>
+
+      {/* Game Modal */}
+      {gameStarted && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full shadow-2xl"
+          >
+            <div className="text-center">
+              <div className="text-6xl mb-4">{gameQuestions[gameQuestion].emoji}</div>
+              <h3 className="text-2xl font-bold mb-6 text-purple-800 dark:text-purple-300">
+                Savol {gameQuestion + 1}/{gameQuestions.length}
+              </h3>
+              <p className="text-lg mb-8 text-gray-700 dark:text-gray-300">
+                {gameQuestions[gameQuestion].question}
+              </p>
+              
+              <div className="space-y-3">
+                {gameQuestions[gameQuestion].options.map((option, index) => (
+                  <button
+                    key={index}
+                    onClick={() => answerQuestion(index)}
+                    className="w-full p-4 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl hover:from-purple-200 hover:to-pink-200 dark:hover:from-purple-800/50 dark:hover:to-pink-800/50 transition-all text-left font-medium text-gray-800 dark:text-gray-200 border-2 border-transparent hover:border-purple-300"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+              
+              <div className="mt-6 flex justify-between items-center">
+                <div className="text-sm text-gray-500">
+                  Ball: {score}/{gameQuestion}
+                </div>
+                <button
+                  onClick={() => setGameStarted(false)}
+                  className="text-sm text-red-500 hover:text-red-700"
+                >
+                  O'yinni to'xtatish
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
