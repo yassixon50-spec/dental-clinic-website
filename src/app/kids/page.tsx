@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Star, Smile, Apple, Cookie, Candy, Shield, Sparkles, Award, CheckCircle, XCircle, Baby, Users, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -123,8 +123,8 @@ export default function KidsPage() {
               key={i}
               className="absolute"
               initial={{ 
-                x: Math.random() * window.innerWidth, 
-                y: Math.random() * window.innerHeight,
+                x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 1200, 
+                y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : Math.random() * 800,
                 scale: 0 
               }}
               animate={{ 
