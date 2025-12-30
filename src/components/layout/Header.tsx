@@ -8,12 +8,14 @@ import { Button } from "../ui";
 import AdminModal from "./AdminModal";
 
 const menuItems = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Doctors", href: "#doctors" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Bosh sahifa", href: "#hero" },
+  { label: "Haqimizda", href: "#about" },
+  { label: "Xizmatlar", href: "#services" },
+  { label: "Shifokorlar", href: "#doctors" },
+  { label: "Narxlar", href: "#pricing" },
+  { label: "Bolalar", href: "/kids", external: true },
+  { label: "Blog", href: "/blog", external: true },
+  { label: "Aloqa", href: "#contact" },
 ];
 
 export default function Header() {
@@ -89,18 +91,33 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {menuItems.map((item) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                whileHover={{ scale: 1.05 }}
-                className={`font-medium transition-colors ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-primary"
-                    : "text-white/90 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </motion.a>
+              item.external ? (
+                <Link key={item.href} href={item.href}>
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    className={`font-medium transition-colors cursor-pointer ${
+                      isScrolled
+                        ? "text-gray-700 hover:text-primary"
+                        : "text-white/90 hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </motion.span>
+                </Link>
+              ) : (
+                <motion.a
+                  key={item.href}
+                  href={item.href}
+                  whileHover={{ scale: 1.05 }}
+                  className={`font-medium transition-colors ${
+                    isScrolled
+                      ? "text-gray-700 hover:text-primary"
+                      : "text-white/90 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </motion.a>
+              )
             ))}
           </nav>
 
@@ -126,7 +143,7 @@ export default function Header() {
               size="sm"
               variant={isScrolled ? "primary" : "secondary"}
             >
-              Book Now
+              Navbat olish
             </Button>
           </div>
 
@@ -155,14 +172,25 @@ export default function Header() {
           >
             <div className="container-custom py-6 space-y-4">
               {menuItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-gray-700 hover:text-primary font-medium"
-                >
-                  {item.label}
-                </a>
+                item.external ? (
+                  <Link key={item.href} href={item.href}>
+                    <span
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block py-2 text-gray-700 hover:text-primary font-medium cursor-pointer"
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 text-gray-700 hover:text-primary font-medium"
+                  >
+                    {item.label}
+                  </a>
+                )
               ))}
               <div className="pt-4 border-t space-y-3">
                 <div className="flex items-center gap-2 text-gray-600">
@@ -170,7 +198,7 @@ export default function Header() {
                   <span>+998 90 123 45 67</span>
                 </div>
                 <Button href="#appointment" className="w-full">
-                  Book Now
+                  Navbat olish
                 </Button>
               </div>
             </div>
