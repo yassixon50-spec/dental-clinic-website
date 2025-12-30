@@ -121,7 +121,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Contact Info & CTA */}
+          {/* Contact Info */}
           <div className="hidden lg:flex items-center gap-4">
             <div
               className={`flex items-center gap-4 text-sm ${
@@ -137,14 +137,6 @@ export default function Header() {
                 <span>9:00 - 18:00</span>
               </div>
             </div>
-
-            <Button
-              href="#appointment"
-              size="sm"
-              variant={isScrolled ? "primary" : "secondary"}
-            >
-              Navbat olish
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -197,9 +189,6 @@ export default function Header() {
                   <Phone size={18} />
                   <span>+998 90 123 45 67</span>
                 </div>
-                <Button href="#appointment" className="w-full">
-                  Navbat olish
-                </Button>
               </div>
             </div>
           </motion.div>
