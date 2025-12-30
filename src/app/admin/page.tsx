@@ -286,7 +286,7 @@ export default function AdminPage() {
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all focus:outline-none focus:ring-0 focus:border-0 ${
                 activeTab === item.id
                   ? "bg-primary text-white shadow-lg shadow-primary/30"
-                  : `${darkMode ? "hover:bg-gray-700 text-white" : "hover:bg-gray-100 text-gray-900"}`
+                  : `${darkMode ? "hover:bg-gray-700 text-gray-300 hover:text-white" : "hover:bg-gray-100 text-gray-700 hover:text-gray-900"}`
               }`}
             >
               <item.icon size={20} />
@@ -299,7 +299,7 @@ export default function AdminPage() {
         <div className={`p-4 border-t space-y-2 ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl ${darkMode ? "hover:bg-gray-700 text-white" : "hover:bg-gray-100 text-gray-900"}`}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl ${darkMode ? "hover:bg-gray-700 text-gray-300 hover:text-white" : "hover:bg-gray-100 text-gray-700 hover:text-gray-900"}`}
           >
             {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             {sidebarOpen && <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>}
