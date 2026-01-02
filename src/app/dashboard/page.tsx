@@ -99,8 +99,11 @@ export default function DashboardPage() {
   ]);
   const [chatInput, setChatInput] = useState('');
 
+  const handleFeatureClick = (featureId: string) => {
+    setSelectedFeature(featureId);
+  };
+
   const handleChatSend = () => {
-    if (!chatInput.trim()) return;
     
     setChatMessages(prev => [...prev, { type: 'user', message: chatInput }]);
     
@@ -185,7 +188,7 @@ export default function DashboardPage() {
               >
                 <Card 
                   className="p-6 h-full cursor-pointer hover:shadow-2xl transition-all duration-300 border-2 hover:border-blue-200 dark:hover:border-blue-700"
-                  onClick={() => setSelectedFeature(feature.id)}
+                  onClick={() => handleFeatureClick(feature.id)}
                 >
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 mx-auto shadow-lg`}>
                     <feature.icon className="text-white" size={32} />
