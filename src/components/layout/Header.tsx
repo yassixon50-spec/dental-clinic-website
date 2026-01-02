@@ -14,6 +14,7 @@ const menuItems = [
   { label: "Shifokorlar", href: "#doctors" },
   { label: "Narxlar", href: "#pricing" },
   { label: "Bolalar", href: "/kids", external: true },
+  { label: "🤖 AI Maslahatchi", href: "/dashboard", external: true },
   { label: "Aloqa", href: "#contact" },
 ];
 
