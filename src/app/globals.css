@@ -58,7 +58,7 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: var(--color-gray-900);
   background-color: var(--color-white);
   -webkit-font-smoothing: antialiased;
@@ -128,7 +128,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
   font-weight: 600;
 }
 
@@ -243,11 +243,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Font Classes */
 .font-heading {
-  font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
 }
 
 .font-body {
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 /* Scrollbar Styling */

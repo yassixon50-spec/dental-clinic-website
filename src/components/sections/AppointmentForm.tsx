@@ -52,35 +52,25 @@ export default function AppointmentForm() {
       const body = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        // Prefer a helpful log message when body is empty
-        if (body && Object.keys(body).length > 0) {
-          console.error("Telegram send failed:", body);
-        } else {
-          console.error(
-            `Telegram send failed: ${response.status} ${response.statusText}`
-          );
-        }
-
-        // If the server reports env variables not configured, or returns an empty body
-        // (dev environments sometimes return an empty error), treat as env-not-configured
-        if (
-          (body && body.error === "Server env variables not configured") ||
-          (body && Object.keys(body).length === 0)
-        ) {
-          return {
-            ok: false,
-            error: body.error || "No server error body",
-            envNotConfigured: true,
-          };
-        }
-
-        return { ok: false, error: body.error || body };
+        console.warn("Telegram yuborish muvaffaqiyatsiz:", body);
+        
+        return {
+          ok: false,
+          error: body.error || `HTTP ${response.status}`,
+          envNotConfigured: body.envNotConfigured,
+          telegramError: body.telegramError,
+          networkError: body.networkError
+        };
       }
 
       return { ok: true };
     } catch (error) {
-      console.error("Telegram xatolik:", error);
-      return { ok: false, error: String(error) };
+      console.warn("Telegram yuborish xatosi:", error);
+      return {
+        ok: false,
+        error: String(error),
+        networkError: true
+      };
     }
   };
 
@@ -114,30 +104,20 @@ export default function AppointmentForm() {
   const onSubmit = async (data: FormData) => {
     setSubmitError(null);
 
-    const result = await sendToTelegram(data);
-
-    if (!result.ok) {
-      // If Telegram isn't configured on the server, save locally and show success
-      if ((result as any).envNotConfigured) {
-        saveOfflineSubmission(data);
-        setIsSubmitted(true);
-        reset();
-        setTimeout(() => setIsSubmitted(false), 5000);
-        return;
-      }
-
-      setSubmitError(
-        typeof result.error === "string"
-          ? result.error
-          : JSON.stringify(result.error)
-      );
-      return;
-    }
-
-    // Also save a local copy so admin panel (which reads localStorage)
-    // shows the record with timestamp even when Telegram is configured.
+    // Always save locally first
     saveOfflineSubmission(data);
 
+    // Try to send to Telegram, but don't fail if it doesn't work
+    try {
+      const result = await sendToTelegram(data);
+      if (!result.ok) {
+        console.warn("Telegram yuborish muvaffaqiyatsiz, lekin ma'lumot saqlandi:", result.error);
+      }
+    } catch (error) {
+      console.warn("Telegram yuborish xatosi, lekin ma'lumot saqlandi:", error);
+    }
+
+    // Always show success regardless of Telegram status
     setIsSubmitted(true);
     reset();
     setTimeout(() => setIsSubmitted(false), 5000);

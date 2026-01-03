@@ -8,13 +8,11 @@ import { Button } from "../ui";
 import AdminModal from "./AdminModal";
 
 const menuItems = [
-  { label: "Bosh sahifa", href: "#hero" },
   { label: "Haqimizda", href: "#about" },
   { label: "Xizmatlar", href: "#services" },
   { label: "Shifokorlar", href: "#doctors" },
   { label: "Narxlar", href: "#pricing" },
   { label: "Bolalar", href: "/kids", external: true },
-  { label: "🤖 AI Maslahatchi", href: "/dashboard", external: true },
   { label: "Aloqa", href: "#contact" },
 ];
 
@@ -79,11 +77,6 @@ export default function Header() {
                 isScrolled ? "text-gray-900" : "text-white"
               }`}>
                 DentCare
-              </span>
-              <span className={`text-xs ${
-                isScrolled ? "text-gray-500" : "text-white/70"
-              }`}>
-                Dental Clinic
               </span>
             </div>
           </div>

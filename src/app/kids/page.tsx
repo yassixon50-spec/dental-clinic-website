@@ -1,9 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Star, Smile, Apple, Cookie, Candy, Shield, Sparkles, Award, CheckCircle, XCircle, Baby, Users, Calendar } from "lucide-react";
+import { Heart, Star, Sparkles, CheckCircle, XCircle, Users, Calendar } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { AnimatedSection, Button, Card } from "../../components/ui";
 
